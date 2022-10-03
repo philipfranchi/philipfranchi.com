@@ -1,6 +1,9 @@
+cd front
+yarn install
 yarn build
+cd -
 mkdir tmp
-cp -r build tmp/public
+cp -r front/build tmp/public
 rm -f go.zip
 cp application.go go.mod tmp/
 cd tmp
