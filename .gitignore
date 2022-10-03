@@ -4,6 +4,7 @@
 /node_modules
 /.pnp
 .pnp.js
+go.sum
 
 # testing
 /coverage
@@ -49,3 +50,6 @@ yarn-error.log*
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
+
+# VSCode
+*.code-workspace
