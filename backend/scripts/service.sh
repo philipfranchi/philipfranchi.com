@@ -1,0 +1,1 @@
+go run $PROJECT_ROOT/backend/application.go
