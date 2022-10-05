@@ -17,7 +17,7 @@ This is the source code for my personal website. It's really a work in progress
 12. Add SSL to the website conf, under virtualhost 443
 13. Restart httpd
 14. Clone my repo onto the machine and build the files
-15. Symlink my build output dir to the dir listed in the conf file for the site (I needed to do chmod o+x on everything below /home/ec2-user) to get this to work
+15. Symlink my build output dir to the dir listed in the conf file for the site (I needed to change the group of the files to be apache `chown -R :apache <files>`) to get this to work
 16. Pause to appreciate the front-end running :)
 17. Create a cron job (1 01,13 * * * root /usr/bin/certbot renew --quiet) using crontab -e to auto renew the cert twice a day
 18. Turn the backend into a service by creating a file under /etc/systemd/system with these contents
