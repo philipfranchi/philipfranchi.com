@@ -6,7 +6,10 @@ import (
 	"path"
 )
 
-type BlogPost string
+type BlogPost struct {
+	Title string `json:"title"`
+	Body  string `json:"body"`
+}
 
 type BlogProvider struct {
 	contentRoot string
@@ -19,13 +22,13 @@ func CreateBlogProvider(config ProjectConfig) *BlogProvider {
 func (b *BlogProvider) GetBlogPostBySlug(slug string) (BlogPost, *ApplicationError) {
 	if slug == "bad" {
 		err := ValidationError("bad slug")
-		return "", err
+		return BlogPost{}, err
 	}
 	postPath := path.Join(b.contentRoot, slug+".md")
 	log.Println("Looking for post at: " + postPath)
 	dat, err := os.ReadFile(postPath)
 	if err != nil {
-		return "", PostMissingError("Post not found")
+		return BlogPost{}, PostMissingError("Post not found")
 	}
-	return BlogPost(dat), nil
+	return BlogPost{Title: slug, Body: string(dat)}, nil
 }

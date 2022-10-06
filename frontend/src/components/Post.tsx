@@ -9,13 +9,16 @@ const Post = () => {
         const getPost = async () => {
             await fetch(
                 '/api/blog/' + postId,
-            ).then((response) => response.text())
-                .then((data) => setMarkdown(data));
+            ).then((response) => response.json())
+                .then((data) => {
+                    console.log(data)
+                    setMarkdown(data.body)
+                });
         }
         getPost();
     }, [postId]);
 
-    return <ReactMarkdown children={markdown} />
+    return <ReactMarkdown children={`${markdown}`} />
 
 }
 export default Post;
