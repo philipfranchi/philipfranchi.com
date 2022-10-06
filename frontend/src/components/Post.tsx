@@ -1,10 +1,21 @@
+import React, { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom";
+import ReactMarkdown from 'react-markdown'
 
-export default function Post() {
-    let params = useParams();
-    const postId = params.postId;
-    console.log(postId);
-    return (
-        <h2>Post: {postId}</h2>
-    );
-  }
+const Post = () => {
+    const postId = useParams().postId;
+    const [markdown, setMarkdown] = useState("");
+    useEffect(() => {
+        const getPost = async () => {
+            await fetch(
+                '/api/blog/' + postId,
+            ).then((response) => response.text())
+                .then((data) => setMarkdown(data));
+        }
+        getPost();
+    }, [postId]);
+
+    return <ReactMarkdown children={markdown} />
+
+}
+export default Post;
