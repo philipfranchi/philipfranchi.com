@@ -1,21 +1,31 @@
 package main
 
-type BlogPost struct {
-	Location string `json:"location"`
-	Title    string `json:"title"`
-	Slug     string `json:"slug"`
-	Body     string `json:"body"`
+import (
+	"log"
+	"os"
+	"path"
+)
+
+type BlogPost string
+
+type BlogProvider struct {
+	contentRoot string
 }
 
-func GetBlogPostBySlug(slug string) (BlogPost, *ApplicationError) {
+func CreateBlogProvider(config ProjectConfig) *BlogProvider {
+	b := BlogProvider{contentRoot: config.ContentRoot}
+	return &b
+}
+func (b *BlogProvider) GetBlogPostBySlug(slug string) (BlogPost, *ApplicationError) {
 	if slug == "bad" {
 		err := ValidationError("bad slug")
-		return BlogPost{}, err
+		return "", err
 	}
-	return BlogPost{
-		Location: "dummy",
-		Title:    slug,
-		Slug:     slug,
-		Body:     "lorem ipsum dolor baby",
-	}, nil
+	postPath := path.Join(b.contentRoot, slug+".md")
+	log.Println("Looking for post at: " + postPath)
+	dat, err := os.ReadFile(postPath)
+	if err != nil {
+		return "", PostMissingError("Post not found")
+	}
+	return BlogPost(dat), nil
 }

@@ -24,3 +24,10 @@ func MarshallingError(msg string) *ApplicationError {
 	}
 	return &err
 }
+
+func PostMissingError(msg string) *ApplicationError {
+	err := ApplicationError{
+		http.StatusNotFound, msg,
+	}
+	return &err
+}

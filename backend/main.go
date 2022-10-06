@@ -1,19 +1,16 @@
 package main
 
 import (
+	"log"
 	"net/http"
-	"os"
-
-	"github.com/gorilla/mux"
 )
 
 func main() {
-	var port = os.Getenv("BACKEND_PORT")
-	if len(port) == 0 {
-		port = "8000"
-	}
-	router := mux.NewRouter()
-	CreateAPIRouter(router)
-	LoadMiddleware(router)
-	http.ListenAndServe(":"+port, router)
+	config := CreateConfigFromEnv()
+	blog := CreateBlogProvider(config)
+	handler := CreateAPIHandler(blog)
+	router := CreateAPIRouter(handler)
+	fullAddress := config.ApplicationAddress + ":" + config.ApplicationPort
+	log.Println("Application is running on " + fullAddress)
+	http.ListenAndServe(fullAddress, router)
 }

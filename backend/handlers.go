@@ -7,27 +7,36 @@ import (
 	"github.com/gorilla/mux"
 )
 
-func respond(w http.ResponseWriter, code int, msg []byte) {
-	w.Header().Set("Content-Type", "application/json")
+type APIHandler struct {
+	blog *BlogProvider
+}
+
+func CreateAPIHandler(blog *BlogProvider) *APIHandler {
+	handler := APIHandler{blog}
+	return &handler
+}
+
+func (h *APIHandler) respond(w http.ResponseWriter, code int, msg []byte) {
+	//w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 	w.Write(msg)
 }
 
-func respondWithError(w http.ResponseWriter, err *ApplicationError) {
-	respond(w, err.Code, []byte(err.Message))
+func (h *APIHandler) respondWithError(w http.ResponseWriter, err *ApplicationError) {
+	h.respond(w, err.Code, []byte(err.Message))
 }
 
-func SingleBlogHandler(w http.ResponseWriter, r *http.Request) {
+func (h *APIHandler) SingleBlogHandler(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	slug := vars["slug"]
 
-	post, appErr := GetBlogPostBySlug(slug)
+	post, appErr := h.blog.GetBlogPostBySlug(slug)
 	if appErr != nil {
-		respondWithError(w, appErr)
+		h.respondWithError(w, appErr)
 	}
 	data, err := json.Marshal(post)
 	if err != nil {
-		respondWithError(w, MarshallingError(err.Error()))
+		h.respondWithError(w, MarshallingError(err.Error()))
 	}
-	respond(w, http.StatusAccepted, data)
+	h.respond(w, http.StatusAccepted, data)
 }
