@@ -4,11 +4,11 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Navigate, Routes, Route } from "react-router-dom";
 import App from './App';
-import Home from './routes/Home';
-import Projects from './routes/Projects';
-import Blog from './routes/Blog';
-import Post from './routes/Post';
-import Posts from './routes/Posts';
+import Home from './components/Home';
+import Projects from './components/Projects';
+import Blog from './components/Blog';
+import Post from './components/Post';
+import Posts from './components/Posts';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

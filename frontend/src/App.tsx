@@ -1,6 +1,6 @@
 import './App.css';
-import Content from "./routes/Content";
-import Footer from './routes/Footer';
+import Content from "./components/Content";
+import Footer from './components/Footer';
 
 export default function App() {
   return (
