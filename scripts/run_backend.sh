@@ -1,1 +1,3 @@
-go run $PROJECT_ROOT/backend/application.go
+cd $PROJECT_ROOT/backend/
+go build -o server
+./server
