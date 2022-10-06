@@ -11,15 +11,15 @@ type BlogPost struct {
 	Body  string `json:"body"`
 }
 
-type BlogProvider struct {
+type Blog struct {
 	contentRoot string
 }
 
-func CreateBlogProvider(config ProjectConfig) *BlogProvider {
-	b := BlogProvider{contentRoot: config.ContentRoot}
+func CreateBlog(config ProjectConfig) *Blog {
+	b := Blog{contentRoot: config.ContentRoot}
 	return &b
 }
-func (b *BlogProvider) GetBlogPostBySlug(slug string) (BlogPost, *ApplicationError) {
+func (b *Blog) GetBlogPostBySlug(slug string) (BlogPost, *ApplicationError) {
 	if slug == "bad" {
 		err := ValidationError("bad slug")
 		return BlogPost{}, err

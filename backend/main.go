@@ -7,7 +7,7 @@ import (
 
 func main() {
 	config := CreateConfigFromEnv()
-	blog := CreateBlogProvider(config)
+	blog := CreateBlog(config)
 	handler := CreateAPIHandler(blog)
 	router := CreateAPIRouter(handler)
 	fullAddress := config.ApplicationAddress + ":" + config.ApplicationPort

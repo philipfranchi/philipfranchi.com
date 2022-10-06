@@ -8,10 +8,10 @@ import (
 )
 
 type APIHandler struct {
-	blog *BlogProvider
+	blog *Blog
 }
 
-func CreateAPIHandler(blog *BlogProvider) *APIHandler {
+func CreateAPIHandler(blog *Blog) *APIHandler {
 	handler := APIHandler{blog}
 	return &handler
 }
