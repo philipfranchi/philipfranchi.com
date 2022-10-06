@@ -11,6 +11,7 @@ export default function Projects() {
         <ul>
           <li>MOBI/EPUB converter</li>
           <li>6502 Emulator</li>
+          <li>KMeans Color Pallete swapper in Go {"->"} WASM</li>
         </ul>
         
         <h3>Completed</h3>
