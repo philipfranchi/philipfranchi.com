@@ -7,14 +7,14 @@ import (
 	"github.com/gorilla/mux"
 )
 
-func Respond(w http.ResponseWriter, code int, msg []byte) {
+func respond(w http.ResponseWriter, code int, msg []byte) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 	w.Write(msg)
 }
 
-func RespondWithError(w http.ResponseWriter, err *ApplicationError) {
-	Respond(w, err.Code, []byte(err.Message))
+func respondWithError(w http.ResponseWriter, err *ApplicationError) {
+	respond(w, err.Code, []byte(err.Message))
 }
 
 func SingleBlogHandler(w http.ResponseWriter, r *http.Request) {
@@ -23,11 +23,11 @@ func SingleBlogHandler(w http.ResponseWriter, r *http.Request) {
 
 	post, appErr := GetBlogPostBySlug(slug)
 	if appErr != nil {
-		RespondWithError(w, appErr)
+		respondWithError(w, appErr)
 	}
 	data, err := json.Marshal(post)
 	if err != nil {
-		RespondWithError(w, MarshallingError(err.Error()))
+		respondWithError(w, MarshallingError(err.Error()))
 	}
-	Respond(w, http.StatusAccepted, data)
+	respond(w, http.StatusAccepted, data)
 }
