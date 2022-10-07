@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { BlogPostMetadata } from "./api";
 import { Link } from "react-router-dom";
 
+import './Posts.css'
+
 const Post = () => {
   const [posts, setPosts] = useState<BlogPostMetadata[]>([]);
 
@@ -10,21 +12,23 @@ const Post = () => {
       await fetch("/api/blog/")
         .then((response) => response.json())
         .then((data) => {
-          console.log(data);
           setPosts(data);
         });
     };
     getPostMetadata();
   }, []);
 
-  const metadataItems = posts
-    .map((post) => post as BlogPostMetadata)
+  let metadataItems = posts
     .filter((post) => !!post.title && !!post.slug)
-    .map((post) => (
-      <li>
-        <Link to={post.slug}>{post.title}</Link>
-      </li>
+    .map(({slug, title}) => (
+      <Link key={slug} to={slug}>{title}</Link>
     ));
-  return <ul>{metadataItems}</ul>;
+  metadataItems = [...metadataItems, ...metadataItems];
+  return <>
+    <h2 className="PostsHeader">Posts</h2>
+    <div className="Posts">
+    {metadataItems}
+    </div>
+    </>
 };
 export default Post;

@@ -10,8 +10,8 @@ const Post = () => {
       await fetch("/api/blog/" + postId)
         .then((response) => response.json())
         .then((data) => {
-          console.log(data);
           setMarkdown(data.body);
+          document.title = data.title;
         });
     };
     getPost();

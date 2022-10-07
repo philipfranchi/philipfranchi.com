@@ -6,7 +6,6 @@ import { BrowserRouter, Navigate, Routes, Route } from "react-router-dom";
 import App from "./App";
 import Home from "./components/Home";
 import Projects from "./components/Projects";
-import Blog from "./components/Blog";
 import Post from "./components/Post";
 import Posts from "./components/Posts";
 
@@ -20,10 +19,8 @@ root.render(
         <Route path="/" element={<App />}>
           <Route index element={<Home />} />
           <Route path="projects" element={<Projects />} />
-          <Route path="blog" element={<Blog />}>
-            <Route index element={<Posts />} />
-            <Route path=":postId" element={<Post />} />
-          </Route>
+          <Route path="blog" element={<Posts />} />
+          <Route path="blog/:postId" element={<Post />} />
         </Route>
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
