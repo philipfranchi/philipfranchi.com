@@ -21,6 +21,20 @@ func ValidationError() *ApplicationError {
 	return &err
 }
 
+func PostMissingError(slug string) *ApplicationError {
+	err := ApplicationError{
+		http.StatusNotFound, fmt.Sprintf("Post with id: %s not found", slug),
+	}
+	return &err
+}
+
+func BlogParseError(msg string) *ApplicationError {
+	err := ApplicationError{
+		http.StatusInternalServerError, "Issue parsing blog: " + msg,
+	}
+	return &err
+}
+
 func MarshallingError(msg string) *ApplicationError {
 	err := ApplicationError{
 		http.StatusInternalServerError, msg,
@@ -28,9 +42,9 @@ func MarshallingError(msg string) *ApplicationError {
 	return &err
 }
 
-func PostMissingError(slug string) *ApplicationError {
+func InternalServerError(msg string) *ApplicationError {
 	err := ApplicationError{
-		http.StatusNotFound, fmt.Sprintf("Post with id: %s not found", slug),
+		http.StatusInternalServerError, msg,
 	}
 	return &err
 }
