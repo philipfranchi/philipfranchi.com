@@ -5,7 +5,7 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import App from "./App";
 import Home from "./components/Home";
-import Missing from './components/Missing'
+import Missing from "./components/Missing";
 import Projects from "./components/Projects";
 import Post from "./components/Post";
 import Posts from "./components/Posts";

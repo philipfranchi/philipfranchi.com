@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams} from "react-router-dom";
+import { useParams } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import Missing from "./Missing";
 
@@ -12,11 +12,11 @@ const Post = () => {
       await fetch("/api/blog/" + postId)
         .then((response) => {
           if (response.status == 404) {
-            setShouldRedirect(true)
+            setShouldRedirect(true);
           }
-          return response.json()
+          return response.json();
         })
-        .then((data) => {            
+        .then((data) => {
           setMarkdown(data.body);
           document.title = data.title;
         });
@@ -24,7 +24,7 @@ const Post = () => {
     getPost();
   }, [postId]);
   if (shouldRedirect) {
-    return <Missing />
+    return <Missing />;
   }
   return <ReactMarkdown children={`${markdown}`} />;
 };
