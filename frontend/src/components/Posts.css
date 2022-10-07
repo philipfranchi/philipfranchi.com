@@ -1,0 +1,10 @@
+.PostsHeader {
+  margin-bottom: 0px;
+}
+.Posts {
+  margin-left: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  line-height: 2.5em;
+}

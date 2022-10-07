@@ -2,9 +2,10 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
-import { BrowserRouter, Navigate, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import App from "./App";
 import Home from "./components/Home";
+import Missing from './components/Missing'
 import Projects from "./components/Projects";
 import Post from "./components/Post";
 import Posts from "./components/Posts";
@@ -21,8 +22,8 @@ root.render(
           <Route path="projects" element={<Projects />} />
           <Route path="blog" element={<Posts />} />
           <Route path="blog/:postId" element={<Post />} />
+          <Route path="*" element={<Missing />} />
         </Route>
-        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
