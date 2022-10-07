@@ -20,5 +20,9 @@ func CreateConfigFromEnv() ProjectConfig {
 	}
 	contentRoot := os.Getenv("CONTENT_ROOT")
 
-	return ProjectConfig{ContentRoot: contentRoot, ApplicationPort: port, ApplicationAddress: address}
+	return ProjectConfig{
+		ContentRoot:        contentRoot,
+		ApplicationPort:    port,
+		ApplicationAddress: address,
+	}
 }

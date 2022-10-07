@@ -6,29 +6,39 @@ import (
 	"path"
 )
 
-type BlogPost struct {
+type BlogPostMetadata struct {
 	Title string `json:"title"`
-	Body  string `json:"body"`
 }
 
-type Blog struct {
+type BlogPost struct {
+	BlogPostMetadata
+	Body string `json:"body"`
+}
+
+type BlogManager interface {
+	GetBlogPostBySlug(string) (BlogPost, *ApplicationError)
+	GetAllBlogPostMetadata() ([]BlogPostMetadata, *ApplicationError)
+}
+
+type FileBasedBlogManager struct {
 	contentRoot string
 }
 
-func CreateBlog(config ProjectConfig) *Blog {
-	b := Blog{contentRoot: config.ContentRoot}
+func CreateBlog(config ProjectConfig) BlogManager {
+	b := FileBasedBlogManager{contentRoot: config.ContentRoot}
 	return &b
 }
-func (b *Blog) GetBlogPostBySlug(slug string) (BlogPost, *ApplicationError) {
-	if slug == "bad" {
-		err := ValidationError("bad slug")
-		return BlogPost{}, err
-	}
+
+func (b *FileBasedBlogManager) GetBlogPostBySlug(slug string) (BlogPost, *ApplicationError) {
 	postPath := path.Join(b.contentRoot, slug+".md")
 	log.Println("Looking for post at: " + postPath)
 	dat, err := os.ReadFile(postPath)
 	if err != nil {
-		return BlogPost{}, PostMissingError("Post not found")
+		return BlogPost{}, PostMissingError(slug)
 	}
-	return BlogPost{Title: slug, Body: string(dat)}, nil
+	return BlogPost{BlogPostMetadata: BlogPostMetadata{Title: slug}, Body: string(dat)}, nil
+}
+
+func (b *FileBasedBlogManager) GetAllBlogPostMetadata() ([]BlogPostMetadata, *ApplicationError) {
+	panic("not implemented")
 }

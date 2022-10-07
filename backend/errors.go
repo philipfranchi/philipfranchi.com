@@ -1,6 +1,9 @@
 package main
 
-import "net/http"
+import (
+	"fmt"
+	"net/http"
+)
 
 type ApplicationError struct {
 	Code    int
@@ -11,9 +14,9 @@ func (err *ApplicationError) Error() string {
 	return err.Message
 }
 
-func ValidationError(msg string) *ApplicationError {
+func ValidationError() *ApplicationError {
 	err := ApplicationError{
-		http.StatusBadRequest, msg,
+		http.StatusBadRequest, "bad slug",
 	}
 	return &err
 }
@@ -25,9 +28,9 @@ func MarshallingError(msg string) *ApplicationError {
 	return &err
 }
 
-func PostMissingError(msg string) *ApplicationError {
+func PostMissingError(slug string) *ApplicationError {
 	err := ApplicationError{
-		http.StatusNotFound, msg,
+		http.StatusNotFound, fmt.Sprintf("Post with id: %s not found", slug),
 	}
 	return &err
 }

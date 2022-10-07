@@ -11,7 +11,8 @@ func CreateAPIRouter(handler *APIHandler) *mux.Router {
 	LoadMiddleware(router)
 	api := router.PathPrefix("/api").Subrouter()
 	// IMPORTANT: you must specify an OPTIONS method matcher for the middleware to set CORS headers
-	api.HandleFunc("/blog", handler.SingleBlogHandler).Methods(http.MethodGet)        //, http.MethodOptions)
-	api.HandleFunc("/blog/{slug}", handler.SingleBlogHandler).Methods(http.MethodGet) //, http.MethodOptions)
+	api.HandleFunc("/blog/{slug}", handler.HandleGetSingleBlogPost).
+		Methods(http.MethodGet)
+		//, http.MethodOptions)
 	return router
 }
