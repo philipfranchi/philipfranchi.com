@@ -1,6 +1,6 @@
-import './App.css';
+import "./App.css";
 import Content from "./components/Content";
-import Footer from './components/Footer';
+import Footer from "./components/Footer";
 
 export default function App() {
   return (
@@ -11,6 +11,5 @@ export default function App() {
       <Content />
       <Footer />
     </div>
-    
   );
 }

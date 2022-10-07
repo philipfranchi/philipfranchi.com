@@ -1,5 +1,5 @@
 [comment]: # (TITLE: Sample Post)
-[comment]: # (SLUG: sample-post)
+[comment]: # (SLUG: sample)
 [comment]: # (DATE: 2022-10-07)
 [comment]: # (TAGS: tagOne, tagTwo)
 

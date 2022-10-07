@@ -1,19 +1,26 @@
-
 .Nav {
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-between;
-    align-content: center;
-  }
-  
-  .Nav a:link { text-decoration: none; }
-  
-  .Nav a:visited { text-decoration: none; }
-  
-  .Nav a:hover { text-decoration: none; }
-  
-  .Nav a:active { text-decoration: none; }
-  
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-content: center;
+}
+
+.Nav a:link {
+  text-decoration: none;
+}
+
+.Nav a:visited {
+  text-decoration: none;
+}
+
+.Nav a:hover {
+  text-decoration: none;
+}
+
+.Nav a:active {
+  text-decoration: none;
+}
+
 .Content {
   min-height: 500px;
 }

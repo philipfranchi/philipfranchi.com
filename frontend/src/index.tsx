@@ -1,25 +1,25 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter, Navigate, Routes, Route } from "react-router-dom";
-import App from './App';
-import Home from './components/Home';
-import Projects from './components/Projects';
-import Blog from './components/Blog';
-import Post from './components/Post';
-import Posts from './components/Posts';
+import App from "./App";
+import Home from "./components/Home";
+import Projects from "./components/Projects";
+import Blog from "./components/Blog";
+import Post from "./components/Post";
+import Posts from "./components/Posts";
 
 const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
+  document.getElementById("root") as HTMLElement
 );
 root.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<App />} > 
-        <Route index element={<Home />} />
-        <Route path="projects" element={<Projects />} /> 
+        <Route path="/" element={<App />}>
+          <Route index element={<Home />} />
+          <Route path="projects" element={<Projects />} />
           <Route path="blog" element={<Blog />}>
             <Route index element={<Posts />} />
             <Route path=":postId" element={<Post />} />
@@ -27,7 +27,6 @@ root.render(
         </Route>
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
-      
     </BrowserRouter>
   </React.StrictMode>
 );
