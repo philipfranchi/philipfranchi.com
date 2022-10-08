@@ -18,14 +18,13 @@ const Post = () => {
     getPostMetadata();
   }, []);
 
-  let metadataItems = posts
+  const metadataItems = posts
     .filter((post) => !!post.title && !!post.slug)
     .map(({ slug, title }) => (
       <Link key={slug} to={slug}>
         {title}
       </Link>
     ));
-  metadataItems = [...metadataItems, ...metadataItems];
   return (
     <>
       <h2 className="PostsHeader">Posts</h2>
