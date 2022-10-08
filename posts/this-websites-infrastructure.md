@@ -6,7 +6,7 @@
 # Hosting a web app yourself
 
 
-Making a web application is hard. I should know, I made the website you're reading this from. And this is very much *not* a good example of how to make a website. I have exactly *0* frontend tests, mediocre backend tests, I'm sure there are a ton of security vulnerabilities, and we haven't even broached the lack of content on what is, supposedly, a "blog"
+Making a web application is hard. I should know, I made the website you're reading this from. And this is very much *not* a good example of how to make a website. I have exactly *0* frontend tests, mediocre backend tests, I'm sure there are a ton of security vulnerabilities, and we haven't even broached the lack of content on what is, supposedly, a "blog".
 
 That being said, this whole thing went from "a domain name on a registar" to "capable of serving content to readers" in about 5 days of furious typing and debugging. And I did all of that so that I could write this post and say "You see that website there, [philipfranchi.net](https://www.philipfranchi.net)? I made that."
 
@@ -23,7 +23,7 @@ The smallest of wins (don't quote me on that) is actually getting a domain name 
 
 > Have between $10 - $20 for a domain name. Create an account with a registrar.
 
-Okay. With that out of the way, and the purchase getting validated, we'll move on to step two
+Okay. With that out of the way, and the purchase getting validated, we'll move on to step two.
 
 
 ## 2. Starting the machine
@@ -49,7 +49,7 @@ Let's make sure we got our heads screwed in right. In theory, going to `yourwebs
 
 In order to get the Machine to do, you know, something useful, we need to setup a program that listens to its internet ports for any requests, and has the power to respond if it so chooses. We fortunately have easy access to one! `Nginx`. We're going with that one cause it's `someone elses code` and since a lot of people use it, we don't need to worry about super buggy code that we for sure would be writing. So that's our next win, installing NGINX!
 
-To do that, let's connect to your Machine with SSH. AWS lets you do that with a button (they have a terrible UI) called 'Connect' and it gives you some options. Pick one, but I like to use my own SSH client in the terminal rather than the browser one. To do that, you'll need the key pair you made in [Step Two](##2). The SSH command they provide is super clunky, so I prefer to shortcut it with a config
+To do that, let's connect to your Machine with SSH. AWS lets you do that with a button (they have a terrible UI) called 'Connect' and it gives you some options. Pick one, but I like to use my own SSH client in the terminal rather than the browser one. To do that, you'll need the key pair you made in [Step Two](##2). The SSH command they provide is super clunky, so I prefer to shortcut it with a config.
 
 ### Aside - SSH tip and trick
 
@@ -82,7 +82,7 @@ Take a peek inside `/etc/nginx/nginx.conf`. You should see a configuration calle
 <body> I have a website now! </body>
 ```
 
-Now go back `yourwebsite.com` and tell me what you see. Should be the content we just made! *WE HAVE A WEBSITE*
+Now go back `yourwebsite.com` and tell me what you see. Should be the content we just made! *WE HAVE A WEBSITE*.
 
 ### Epilogue
 
