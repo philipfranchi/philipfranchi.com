@@ -1,5 +1,5 @@
 [comment]: # (TITLE: Hosting a web app yourself)
-[comment]: # (SLUG: this-website-infrastructure)
+[comment]: # (SLUG: this-websites-infrastructure)
 [comment]: # (DATE: 2022-10-07)
 [comment]: # (TAGS: philipfranchi.net)
 
