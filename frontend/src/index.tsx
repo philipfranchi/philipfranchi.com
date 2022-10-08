@@ -8,7 +8,7 @@ import Home from "./components/Home";
 import Missing from "./components/Missing";
 import Projects from "./components/Projects";
 import Post from "./components/Post";
-import Posts from "./components/Posts";
+import Blog from "./components/Blog";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -20,7 +20,7 @@ root.render(
         <Route path="/" element={<App />}>
           <Route index element={<Home />} />
           <Route path="projects" element={<Projects />} />
-          <Route path="blog" element={<Posts />} />
+          <Route path="blog" element={<Blog />} />
           <Route path="blog/:postId" element={<Post />} />
           <Route path="*" element={<Missing />} />
         </Route>

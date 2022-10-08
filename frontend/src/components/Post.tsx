@@ -11,7 +11,7 @@ const Post = () => {
     const getPost = async () => {
       await fetch("/api/blog/" + postId)
         .then((response) => {
-          if (response.status == 404) {
+          if (response.status === 404) {
             setShouldRedirect(true);
           }
           return response.json();
